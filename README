@@ -143,17 +143,3 @@ baza alfa-ului, Z-ul si m1.
 dictionarului.
 
 
-	Feedback:
-
-	- Tema a fost interesanta, de o dificultate potrivita si cu algoritmi utilizati
-in practica. A fost util sa invat despre algoritmul HyperLogLog si sa ma familiarizez
-cu o structura de date probabilistica. Apreciez implicarea responsabililor de tema
-pentru ca au actualizat-o si au venit cu explicatii suplimentare in privinta intelegerii
-enuntului. Totusi, pe viitor, ar fi util ca actualizarile sa nu influenteze rezolvarile
-deja facute ale studentilor, pentru ca atunci cand apare o noua versiune a temei
-sa nu o luam de la capat cu ganditul asupra unui algoritm sau al unei probleme. De
-asemenea, checker-ul ar fi bine sa apara odata cu tema. In final, a fost bine
-ca abordarile pe care trebuia sa le avem la task-uri au fost diferite de cele
-regasite la laborator, spre exemplu implementarea de tip open addressing
-prin linear probing, pentru ca m-au facut sa inteleg mai bine materia deja
-predata pana acum.
