@@ -1,0 +1,159 @@
+Nume: Dragne Lavinia-Stefana
+Grupa: 314 CA
+
+	STRUCTURI DE DATE
+	Tema #2 Count-distinct problem
+
+	Acesta este fisierul README corespunzator prezentarii implementarii rezolvarilor mele la tema 2.
+
+	Continutul proiectului este urmatorul:
+
+-freq.c contine codul sursa al task-ului 1
+
+-freq.h contine header-ul asociat codului sursa pentru task-ul 1
+
+-hash.c contine codul sursa al task-ului 2
+
+-hash.h contine header-ul asociat codului sursa pentru task-ul 2
+
+-hll.c contine codul sursa al task-ului 3
+
+-hll.h contine header-ul asociat codului sursa pentru task-ul 3
+
+-un fisier Makefile ce are urmatoarele utilizari:
+	-build: compileaza codurile sursa in executabile;
+	-clean: sterge toate executabilele create;
+
+-acest fisier README.
+
+	Prezentarea solutiei:
+
+	Task-ul 1
+
+	Semnificatia functiilor:
+
+	- Functia print afiseaza pe ecran elementele si frecventa acestora.
+
+	Algoritmul:
+
+	- Aloc un vector de N_MAX elemente, "frecv", in care memorez frecventa tuturor
+elementelor de la 0 la N_MAX. Vectorul va fi initializat cu int-uri egale cu 0,
+pentru ca toate elementele initial au frecventa 0.
+	- Pe masura ce citesc elemente de la STDIN, cresc frecventa lor in vectorul frecv.
+	- Parcurg vectorul frecv si daca frecventa unui element este nenula, inseamna
+ca acesta a aparut in sir, la citire, deci il afisez, alaturi de frecventa lui,
+cu ajutorul functiei print.
+	- Eliberez memoria folosita pentru vectorul frecv.
+
+	Task-ul 2
+
+	Semnificatia functiilor
+
+	- La acest task voi lucra cu un dictionar ce contine un array de structuri de tip
+"element". Fiecare structura are in componenta sa un "name", de tip char, (numele sirului
+de caractere primit ca parametru de la STDIN) si un "value", de tip int (frecventa acelui
+sir de caractere).
+
+	- Hash_function_string este o functie de hash pentru string-uri.
+
+	- Init_element initializeaza valoarea unui element cu 0 si numele lui cu "\0".
+
+	- Init_ht initializeaza un hashtable, alocand memorie pentru array-ul lui,
+pentru fiecare structura de tip element si asociaza o functie de hash dictionarului.
+
+	- Functia get primeste un dictionar si o variabila de tip key ca si parametru si
+intoarce pozitia pe care se afla acea cheie in dictionar. Daca cheia nu este inca adaugata,
+pozitia intoarsa va fi -1. Pentru aceasta operatie calculez, pe baza functiei de hash, si
+a key-ul, pozitia pe care ar trebui sa fie, in mod normal, in array, elementul. Daca
+nu il gasesc acolo, inseamna ca a existat un conflict si a fost pozitionat in alta
+parte, in array sau nu a fost adaugat inca in dictionar. Parcurg dictionarul
+pana la final, iar apoi de la inceput, pana la pozitia la care ar fi trebuit sa fie
+elementul, daca inca nu l-am gasit si returnez pozitia pe care il gasesc, daca il gasesc.
+	
+	- Functia put adauga, pe baza unui key, un element in dictionar, daca acesta nu
+exista, sau ii creste frecventa, daca exista. Apeland functia get, aflu pozitia pe care
+se afla key in dictionar. Daca el exista deja, doar ii cresc frecventa ("value"). Daca nu
+exista, il adaug in dictionar. Daca pozitia pe care ar trebui sa fie este ocupata, caut
+pana la finalul dictionarului o pozitie libera si daca nu gasesc, caut de la inceput
+pana la pozitia initiala. Unde gasesc loc liber il adaug si ii cresc frecventa.
+
+	- Functia free_ht elibereaza memoria asociata vectorului de structuri buckets
+si structurii hashtable.
+
+	Algoritmul:
+
+	- Citesc sirurile de caractere din stdin si numar cate sunt cu contorul nr.
+Pe baza lui "nr" voi aloca numarul de buckets, din stuctura Hashtable.
+Ma repozitionez cu cursorul la inceputul fisierului.
+
+	- Declar, aloc si initializez o structura de tip Hashtable, ce contine un vector
+de structuri de tip nume-frecventa.
+
+	- Citesc datele de intrare linie cu linie si pe baza numelui primit de la STDIN,
+adaug sirul de caractere in dictionar, cu ajutorul functiei put.
+
+	- Parcurg dictionarul si verific daca elementul de pe pozitia i, din hashtable,
+s-a aflat printre elementele citite de la STDIN. Daca da, afisez sirul de caractere si
+frecventa asociata lui.
+
+	- Eliberez memoria cu ajutorul functiei free_ht.
+ 
+	
+
+	Task-ul 3
+
+	Semnificatia functiilor
+
+	- Hash_function_int este o functie de hash pentru int-uri.
+	
+	- Init_ht initializeaza un hashtable, alocand memorie pentru array-ul lui. Toate
+elementele din array sunt initializate cu 0, numarul de buckets folosit este initializat
+cu 0, iar cel de buckets maxim este N_MAX = 2^m. Se asociaza o functie de hash
+dictionarului.
+
+	- Functia put adauga, pe baza key-ul, un element in dictionar. Int-ul key este
+trecut printr-o functie de hash, iar apoi este shiftat cu 32-m pozitii, pentru a se 
+determina primii m biti ai lui. Pe baza primilor m biti, se determina pozitia din vector
+la care ar trebui sa se gaseasca elementul. Se contorizeaza urmatoarele (32-m) zero-uri
+consecutive din numar si se actualizeaza valoarea din dictionar, daca noul numar de
+zero-uri este mai mare decat cel existent la acea pozitie.
+
+	- Functia free_ht elibereaza memoria asociata vectorului de buckets si a
+dictionarului.
+
+	Algoritmul
+
+	- Verific daca fisierul de intrare exista si poate fi deschis, in caz contrar
+afisez un mesaj de eroare corespunzator. 
+
+	- Declar, aloc si initializez dictionarul.
+
+	- Citesc din fisier, ca siruri de caractere, linie cu linie datele de intrare si le
+transform in int-uri. 
+
+	- Adaug, pe baza functiei put si a key-ului number, numarul in dictionar.
+
+	- Calculez suma tuturor elementelor inverselor de forma 2^(buckets[i]), pentru
+a determina Z-ul din enunt. Ridicarea la putere o realizez folosind o shiftare pe biti.
+
+	- Calculez constanta alfa, pe baza m1 (numarul de buckets folositi) si totalul, pe
+baza alfa-ului, Z-ul si m1.
+
+	- Afisez totalul de numere, inchid fisierul de intrare si eliberez memoria asociata
+dictionarului.
+
+
+	Feedback:
+
+	- Tema a fost interesanta, de o dificultate potrivita si cu algoritmi utilizati
+in practica. A fost util sa invat despre algoritmul HyperLogLog si sa ma familiarizez
+cu o structura de date probabilistica. Apreciez implicarea responsabililor de tema
+pentru ca au actualizat-o si au venit cu explicatii suplimentare in privinta intelegerii
+enuntului. Totusi, pe viitor, ar fi util ca actualizarile sa nu influenteze rezolvarile
+deja facute ale studentilor, pentru ca atunci cand apare o noua versiune a temei
+sa nu o luam de la capat cu ganditul asupra unui algoritm sau al unei probleme. De
+asemenea, checker-ul ar fi bine sa apara odata cu tema. In final, a fost bine
+ca abordarile pe care trebuia sa le avem la task-uri au fost diferite de cele
+regasite la laborator, spre exemplu implementarea de tip open addressing
+prin linear probing, pentru ca m-au facut sa inteleg mai bine materia deja
+predata pana acum.
